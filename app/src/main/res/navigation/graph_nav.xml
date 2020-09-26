@@ -3,11 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/graph_nav"
-    app:startDestination="@id/recentImagesFragment">
+    app:startDestination="@id/recentFragment">
 
     <fragment
-        android:id="@+id/recentImagesFragment"
+        android:id="@+id/recentFragment"
         android:name="com.mhmdawad.wallpaperaty.ui.recentImages.RecentFragment"
-        android:label="fragment_recent_images"
-        tools:layout="@layout/fragment_recent" />
+        android:label="fragment_recent"
+        tools:layout="@layout/fragment_recent" >
+        <action
+            android:id="@+id/action_recentFragment_to_detailsImageFragment"
+            app:destination="@id/detailsImageFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailsImageFragment"
+        android:name="com.mhmdawad.wallpaperaty.ui.imageDetails.DetailsImageFragment"
+        android:label="fragment_details_image"
+        tools:layout="@layout/fragment_details_image" >
+        <argument
+            android:name="image"
+            app:argType="com.mhmdawad.wallpaperaty.models.UnsplashPhoto" />
+    </fragment>
 </navigation>

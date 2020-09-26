@@ -2,22 +2,24 @@ package com.mhmdawad.wallpaperaty.ui.recentImages
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.mhmdawad.wallpaperaty.R
+import com.mhmdawad.wallpaperaty.models.UnsplashPhoto
+import com.mhmdawad.wallpaperaty.utils.OnItemClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_recent.*
 
 
 @AndroidEntryPoint
-class RecentFragment : Fragment(R.layout.fragment_recent) {
+class RecentFragment : Fragment(R.layout.fragment_recent), OnItemClickListener {
 
     private val viewModel by viewModels<RecentViewModel>()
-    private val wallpaperAdapter by lazy { WallpaperAdapter() }
+    private val wallpaperAdapter by lazy { WallpaperAdapter(this) }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -66,5 +68,10 @@ class RecentFragment : Fragment(R.layout.fragment_recent) {
         viewModel.wallpapers.observe(viewLifecycleOwner) {
             wallpaperAdapter.submitData(viewLifecycleOwner.lifecycle, it)
         }
+    }
+
+    override fun onItemClicked(photo: UnsplashPhoto) {
+        val action = RecentFragmentDirections.actionRecentFragmentToDetailsImageFragment(photo)
+        findNavController().navigate(action)
     }
 }

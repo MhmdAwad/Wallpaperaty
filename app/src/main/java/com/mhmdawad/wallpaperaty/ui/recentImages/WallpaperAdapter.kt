@@ -10,10 +10,11 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mhmdawad.wallpaperaty.R
 import com.mhmdawad.wallpaperaty.models.UnsplashPhoto
+import com.mhmdawad.wallpaperaty.utils.OnItemClickListener
 import kotlinx.android.synthetic.main.main_image_layout_rv.view.*
 
 
-class WallpaperAdapter :
+class WallpaperAdapter(private val onItemClickListener: OnItemClickListener) :
     PagingDataAdapter<UnsplashPhoto, WallpaperAdapter.PhotoViewHolder>(WALLPAPER_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder =
@@ -28,8 +29,16 @@ class WallpaperAdapter :
         }
     }
 
-    class PhotoViewHolder(itemView: View) :
+    inner class PhotoViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
+
+        init {
+            itemView.setOnClickListener {
+                val item = getItem(bindingAdapterPosition)
+                if(item != null)
+                    onItemClickListener.onItemClicked(item)
+            }
+        }
 
         fun bind(photo: UnsplashPhoto)  =with(itemView) {
                 Glide.with(this)
