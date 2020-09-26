@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/recentImagesFragment"
-        android:name="com.mhmdawad.wallpaperaty.ui.recentImages.RecentImagesFragment"
+        android:name="com.mhmdawad.wallpaperaty.ui.recentImages.RecentFragment"
         android:label="fragment_recent_images"
-        tools:layout="@layout/fragment_recent_images" />
+        tools:layout="@layout/fragment_recent" />
 </navigation>

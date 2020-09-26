@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.mhmdawad.wallpaperaty.R
+import dagger.hilt.android.AndroidEntryPoint
 
 
-class RecentImagesFragment : Fragment(R.layout.fragment_recent_images) {
+@AndroidEntryPoint
+class RecentFragment : Fragment(R.layout.fragment_recent) {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

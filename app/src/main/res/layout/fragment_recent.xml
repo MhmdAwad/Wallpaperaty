@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_green_light"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ui.recentImages.RecentImagesFragment">
+    tools:context=".ui.recentImages.RecentFragment">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recentImagesRV"
