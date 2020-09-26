@@ -15,7 +15,7 @@ class WallpaperRepository @Inject constructor(
     fun getSearchPhotos(query: String)=
         Pager(
             config = PagingConfig(
-                pageSize = 20,
+                pageSize = 10,
                 maxSize = 100,
                 enablePlaceholders = false
             ),

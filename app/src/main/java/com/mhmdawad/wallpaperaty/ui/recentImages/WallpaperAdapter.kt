@@ -33,10 +33,9 @@ class WallpaperAdapter :
 
         fun bind(photo: UnsplashPhoto)  =with(itemView) {
                 Glide.with(this)
-                    .load(photo.urls.regular)
+                    .load(photo.urls.small)
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
-//                    .error(R.drawable.ic_error)
                     .into(itemImage)
 
         }

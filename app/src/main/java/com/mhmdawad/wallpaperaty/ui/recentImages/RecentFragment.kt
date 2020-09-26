@@ -21,8 +21,12 @@ class RecentFragment : Fragment(R.layout.fragment_recent) {
         val wallpaperAdapter = WallpaperAdapter()
         recentImagesRV.apply {
             setHasFixedSize(true)
-            adapter = wallpaperAdapter
+            adapter = wallpaperAdapter.withLoadStateHeaderAndFooter(
+                header = RecentLoadStatesAdapter {wallpaperAdapter.retry()},
+                footer = RecentLoadStatesAdapter {wallpaperAdapter.retry()}
+            )
         }
+
         viewModel.wallpapers.observe(viewLifecycleOwner){
             wallpaperAdapter.submitData(viewLifecycleOwner.lifecycle, it )
         }
