@@ -2,10 +2,12 @@ package com.mhmdawad.wallpaperaty.ui.recentImages
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ImageView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.mhmdawad.wallpaperaty.R
@@ -70,8 +72,11 @@ class RecentFragment : Fragment(R.layout.fragment_recent), OnItemClickListener {
         }
     }
 
-    override fun onItemClicked(photo: UnsplashPhoto) {
+    override fun onItemClicked(photo: UnsplashPhoto, imageView: ImageView) {
+        val extras = FragmentNavigatorExtras(
+            imageView to photo.urls.small
+        )
         val action = RecentFragmentDirections.actionRecentFragmentToDetailsImageFragment(photo)
-        findNavController().navigate(action)
+        findNavController().navigate(action, extras)
     }
 }

@@ -1,6 +1,7 @@
 package com.mhmdawad.wallpaperaty.ui.imageDetails
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,10 +19,21 @@ class DetailsImageFragment : Fragment(R.layout.fragment_details_image) {
 
     private val args by navArgs<DetailsImageFragmentArgs>()
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        sharedElementEnterTransition = TransitionInflater.from(context).inflateTransition(android.R.transition.move)
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+//        detailImage.transitionName = resources.getString(R.string.transitionName)
+
         val image: UnsplashPhoto = args.image
-        detailImage.loadImage(image.urls.regular)
+        detailImage.apply {
+            transitionName = image.urls.small
+            loadImage(image.urls.regular)
+        }
     }
 }

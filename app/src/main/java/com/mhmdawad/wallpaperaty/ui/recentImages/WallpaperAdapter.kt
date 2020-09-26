@@ -19,7 +19,10 @@ class WallpaperAdapter(private val onItemClickListener: OnItemClickListener) :
     PagingDataAdapter<UnsplashPhoto, WallpaperAdapter.PhotoViewHolder>(WALLPAPER_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhotoViewHolder =
-        PhotoViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.main_image_layout_rv, parent, false))
+        PhotoViewHolder(
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.main_image_layout_rv, parent, false)
+        )
 
 
     override fun onBindViewHolder(holder: PhotoViewHolder, position: Int) {
@@ -33,16 +36,16 @@ class WallpaperAdapter(private val onItemClickListener: OnItemClickListener) :
     inner class PhotoViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
 
-        init {
-            itemView.setOnClickListener {
-                val item = getItem(bindingAdapterPosition)
-                if(item != null)
-                    onItemClickListener.onItemClicked(item)
+        fun bind(photo: UnsplashPhoto) = with(itemView) {
+            itemImage.apply {
+                transitionName = photo.urls.small
+                loadImage(photo.urls.small)
             }
-        }
-
-        fun bind(photo: UnsplashPhoto)  =with(itemView) {
-                itemImage.loadImage(photo.urls.small)
+            this.setOnClickListener {
+                val item = getItem(bindingAdapterPosition)
+                if (item != null)
+                    onItemClickListener.onItemClicked(item, itemImage)
+            }
         }
     }
 
