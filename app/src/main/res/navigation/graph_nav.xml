@@ -12,7 +12,9 @@
         tools:layout="@layout/fragment_recent" >
         <action
             android:id="@+id/action_recentFragment_to_detailsImageFragment"
-            app:destination="@id/detailsImageFragment" />
+            app:destination="@id/detailsImageFragment"
+            app:exitAnim="@anim/slide_out_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/detailsImageFragment"
