@@ -19,7 +19,7 @@ class RecentViewModel @ViewModelInject constructor(private val wallpaperReposito
         wallpaperRepository.getSearchPhotos(query).cachedIn(viewModelScope)
     }
 
-    fun searchQuery(query: String){
+    fun searchQuery(query: String = DEFAULT_QUERY){
         defaultQuery.value = query
     }
 

@@ -36,6 +36,7 @@ class WallpaperAdapter :
                     .load(photo.urls.small)
                     .centerCrop()
                     .transition(DrawableTransitionOptions.withCrossFade())
+                    .error(R.drawable.ic_broken_image_24)
                     .into(itemImage)
 
         }

@@ -12,3 +12,4 @@
 /captures
 .externalNativeBuild
 .cxx
+/app/src/main/java/com/mhmdawad/wallpaperaty/utils/DevKey.kt
