@@ -1,7 +1,11 @@
 package com.mhmdawad.wallpaperaty.ui.recentImages
 
+import android.app.Activity
+import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
@@ -13,6 +17,7 @@ import androidx.paging.LoadState
 import com.mhmdawad.wallpaperaty.R
 import com.mhmdawad.wallpaperaty.models.UnsplashPhoto
 import com.mhmdawad.wallpaperaty.utils.OnItemClickListener
+import com.mhmdawad.wallpaperaty.utils.clearNoLimitFlag
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_recent.*
 
@@ -26,11 +31,30 @@ class RecentFragment : Fragment(R.layout.fragment_recent), OnItemClickListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        clearNoLimitFlag()
         initRecyclerView()
         refreshListener()
         observeObservers()
         loadStatesListener()
+        searchListener(view.context)
+    }
 
+    private fun searchListener(context: Context) {
+        wallpaperSearch.setOnEditorActionListener { _, actionId, _ ->
+            if (actionId == EditorInfo.IME_ACTION_SEARCH && wallpaperSearch.text.isNotEmpty()) {
+                viewModel.searchQuery(wallpaperSearch.text.toString())
+                closeSearch(context)
+                return@setOnEditorActionListener true
+            }
+            return@setOnEditorActionListener false
+        }
+    }
+
+    private fun closeSearch(context: Context) {
+        wallpaperSearch.text.clear()
+        wallpaperSearch.clearFocus()
+        val input = context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        input.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
 
     private fun loadStatesListener() {

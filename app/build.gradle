@@ -67,11 +67,12 @@ dependencies {
     kapt "androidx.hilt:hilt-compiler:$hiltAndroidXVersion"
 
     // Paging 3
-    def pagingVersion = '3.0.0-alpha05'
+    def pagingVersion = '3.0.0-alpha06'
     implementation "androidx.paging:paging-runtime:$pagingVersion"
 
     // Glide
     def glideVersion = '4.11.0'
     implementation "com.github.bumptech.glide:glide:$glideVersion"
+
 
 }

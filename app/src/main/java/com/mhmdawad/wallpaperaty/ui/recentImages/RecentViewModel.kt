@@ -6,21 +6,20 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.switchMap
 import androidx.lifecycle.viewModelScope
 import androidx.paging.cachedIn
-import com.mhmdawad.wallpaperaty.source.WallpaperRepository
+import com.mhmdawad.wallpaperaty.source.repository.WallpaperRepositoryImpl
 
-class RecentViewModel @ViewModelInject constructor(private val wallpaperRepository: WallpaperRepository): ViewModel(){
+class RecentViewModel @ViewModelInject constructor(private val wallpaperRepositoryImpl: WallpaperRepositoryImpl): ViewModel(){
 
-    companion object{
-        private const val DEFAULT_QUERY = "cats"
-    }
-    private val defaultQuery = MutableLiveData(DEFAULT_QUERY)
+    private var lastQuery = "all"
+    private val defaultQuery = MutableLiveData(lastQuery)
 
     val wallpapers = defaultQuery.switchMap {query->
-        wallpaperRepository.getSearchPhotos(query).cachedIn(viewModelScope)
+        wallpaperRepositoryImpl.getSearchPhotos(query).cachedIn(viewModelScope)
     }
 
-    fun searchQuery(query: String = DEFAULT_QUERY){
-        defaultQuery.value = query
+    fun searchQuery(query: String = lastQuery){
+        lastQuery = query
+        defaultQuery.value = lastQuery
     }
 
 
