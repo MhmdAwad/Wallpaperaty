@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mhmdawad.wallpaperaty.R
 import com.mhmdawad.wallpaperaty.models.UnsplashPhoto
+import com.mhmdawad.wallpaperaty.utils.loadImage
 import kotlinx.android.synthetic.main.fragment_details_image.*
 import kotlinx.android.synthetic.main.main_image_layout_rv.view.*
 
@@ -21,10 +22,6 @@ class DetailsImageFragment : Fragment(R.layout.fragment_details_image) {
         super.onViewCreated(view, savedInstanceState)
 
         val image: UnsplashPhoto = args.image
-        Glide.with(this)
-            .load(image.urls.regular)
-            .centerCrop()
-            .transition(DrawableTransitionOptions.withCrossFade())
-            .into(detailImage)
+        detailImage.loadImage(image.urls.regular)
     }
 }

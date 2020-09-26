@@ -11,6 +11,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.mhmdawad.wallpaperaty.R
 import com.mhmdawad.wallpaperaty.models.UnsplashPhoto
 import com.mhmdawad.wallpaperaty.utils.OnItemClickListener
+import com.mhmdawad.wallpaperaty.utils.loadImage
 import kotlinx.android.synthetic.main.main_image_layout_rv.view.*
 
 
@@ -41,13 +42,7 @@ class WallpaperAdapter(private val onItemClickListener: OnItemClickListener) :
         }
 
         fun bind(photo: UnsplashPhoto)  =with(itemView) {
-                Glide.with(this)
-                    .load(photo.urls.small)
-                    .centerCrop()
-                    .transition(DrawableTransitionOptions.withCrossFade())
-                    .error(R.drawable.ic_broken_image_24)
-                    .into(itemImage)
-
+                itemImage.loadImage(photo.urls.small)
         }
     }
 
