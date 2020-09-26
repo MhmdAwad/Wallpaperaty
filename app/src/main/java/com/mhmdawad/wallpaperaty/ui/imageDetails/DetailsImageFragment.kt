@@ -2,11 +2,8 @@ package com.mhmdawad.wallpaperaty.ui.imageDetails
 
 import android.os.Bundle
 import android.transition.TransitionInflater
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
-import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.mhmdawad.wallpaperaty.R
@@ -28,10 +25,27 @@ class DetailsImageFragment : Fragment(R.layout.fragment_details_image) {
         super.onViewCreated(view, savedInstanceState)
 
         addNoLimitFlag()
+        fabListener()
         val image: UnsplashPhoto = args.image
         detailImage.apply {
             transitionName = image.urls.small
             loadImage(image.urls.regular)
+        }
+
+
+    }
+
+    private fun fabListener() {
+        detailImageFAB.setOnClickListener {
+            if(!downloadContainer.isVisible) {
+                detailImageFAB.setImageResource(R.drawable.ic_close_24)
+                downloadContainer.isVisible = true
+                previewContainer.isVisible = true
+            }else{
+                detailImageFAB.setImageResource(R.drawable.ic_add_24)
+                downloadContainer.isVisible = false
+                previewContainer.isVisible = false
+            }
         }
     }
 }
