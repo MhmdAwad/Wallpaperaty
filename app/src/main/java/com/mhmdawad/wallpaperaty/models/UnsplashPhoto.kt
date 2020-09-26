@@ -3,7 +3,6 @@ package com.mhmdawad.wallpaperaty.models
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
-typealias unsplashPhotos = List<UnsplashPhoto>
 
 @Parcelize
 data class UnsplashPhoto(

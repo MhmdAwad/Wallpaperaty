@@ -1,6 +1,6 @@
 package com.mhmdawad.wallpaperaty.source.network
 
-import com.mhmdawad.wallpaperaty.models.unsplashPhotos
+import com.mhmdawad.wallpaperaty.models.UnsplashResponse
 import com.mhmdawad.wallpaperaty.utils.MyKey
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -19,5 +19,5 @@ interface WallpaperApi {
         @Query("query") query: String,
         @Query("page") page:Int,
         @Query("per-page") perPage:Int
-    ): unsplashPhotos
+    ): UnsplashResponse
 }
