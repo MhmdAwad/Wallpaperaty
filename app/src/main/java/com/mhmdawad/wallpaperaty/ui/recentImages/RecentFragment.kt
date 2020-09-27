@@ -17,7 +17,9 @@ import androidx.paging.LoadState
 import com.mhmdawad.wallpaperaty.R
 import com.mhmdawad.wallpaperaty.models.UnsplashPhoto
 import com.mhmdawad.wallpaperaty.utils.OnItemClickListener
+import com.mhmdawad.wallpaperaty.utils.changeMode
 import com.mhmdawad.wallpaperaty.utils.clearNoLimitFlag
+import com.mhmdawad.wallpaperaty.utils.getLastThemeMode
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_recent.*
 
@@ -28,15 +30,32 @@ class RecentFragment : Fragment(R.layout.fragment_recent), OnItemClickListener {
     private val viewModel by viewModels<RecentViewModel>()
     private val wallpaperAdapter by lazy { WallpaperAdapter(this) }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         clearNoLimitFlag()
+        checkThemeMode()
         initRecyclerView()
         refreshListener()
         observeObservers()
         loadStatesListener()
         searchListener(view.context)
+
+    }
+
+    private fun checkThemeMode() {
+        val isLight = requireActivity().getLastThemeMode()
+        themeModeButton.setImageResource(
+            if (isLight)
+                R.drawable.ic_light_24
+            else
+                R.drawable.ic_dark_24
+        )
+        themeModeButton.setOnClickListener {
+            changeMode(requireActivity().getPreferences(Context.MODE_PRIVATE))
+            requireActivity().recreate()
+        }
     }
 
     private fun searchListener(context: Context) {

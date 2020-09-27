@@ -7,4 +7,28 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppThemeLight" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/offWhite</item>
+        <item name="colorPrimaryDark">@color/white</item>
+        <item name="colorAccent">@color/lightAccent</item>
+        <item name="colorSecondary">@color/black</item>
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+    </style>
+
+    <style name="AppThemeDark" parent="Theme.AppCompat.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorSecondary">@color/white</item>
+        <item name="android:windowAnimationStyle">@style/WindowAnimationTransition</item>
+    </style>
+    <style name="WindowAnimationTransition">
+        <item name="android:windowEnterAnimation">@android:anim/fade_in</item>
+        <item name="android:windowExitAnimation">@android:anim/fade_out</item>
+    </style>
+
 </resources>

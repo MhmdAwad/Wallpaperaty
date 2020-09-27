@@ -1,4 +1,4 @@
-package com.mhmdawad.wallpaperaty
+package com.mhmdawad.wallpaperaty.ui
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

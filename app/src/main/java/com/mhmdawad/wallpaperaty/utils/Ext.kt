@@ -1,9 +1,11 @@
 package com.mhmdawad.wallpaperaty.utils
 
+import android.app.Activity
 import android.app.DownloadManager
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Environment
 import android.widget.ImageView
@@ -11,6 +13,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.mhmdawad.wallpaperaty.ui.NIGHT_MODE
 
 
 fun ImageView.loadImage(imageUrl: String){
@@ -42,8 +45,21 @@ fun Fragment.downloadImage(url: String){
     manager.enqueue(request)
 }
 
+fun Fragment.changeMode(mSharedPref: SharedPreferences) {
+    val state = mSharedPref.getBoolean(NIGHT_MODE, true)
+    val mEditor = mSharedPref.edit()
+    mEditor.putBoolean(NIGHT_MODE, !state)
+    mEditor.apply()
+}
+
+fun Activity.getLastThemeMode():Boolean{
+    val mSharedPref = getPreferences(Context.MODE_PRIVATE)
+    return mSharedPref?.getBoolean(NIGHT_MODE, true)?:true
+}
+
 var onComplete = object : BroadcastReceiver() {
     override fun onReceive(ctxt: Context, intent: Intent) {
         Toast.makeText(ctxt, "Downloaded", Toast.LENGTH_SHORT).show()
     }
 }
+

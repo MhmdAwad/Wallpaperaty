@@ -4,11 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimaryDark"
+    android:background="?colorPrimaryDark"
     android:focusable="true"
     android:focusableInTouchMode="true"
     tools:context=".ui.recentImages.RecentFragment">
-
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/recentSwipeRefresh"
@@ -27,25 +26,27 @@
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/wallpaperSearch"
+                app:layout_constraintVertical_bias="0.0"
                 app:spanCount="3"
                 tools:listitem="@layout/main_image_layout_rv" />
 
             <TextView
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
                 android:padding="8dp"
                 android:text="@string/app_name"
-                android:textColor="@color/white"
+                android:textColor="?colorSecondary"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@+id/wallpaperSearch"
                 app:layout_constraintEnd_toStartOf="@+id/wallpaperSearch"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/themeModeButton"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
@@ -53,19 +54,34 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
+                android:layout_marginEnd="7dp"
                 android:background="@drawable/rectangle_shape"
+                android:backgroundTint="?colorPrimary"
                 android:ems="10"
                 android:gravity="center"
+                android:hint="@string/search"
                 android:imeOptions="actionSearch"
                 android:importantForAutofill="no"
                 android:inputType="text"
                 android:padding="8dp"
-                android:hint="@string/search"
-                android:textColor="@color/white"
-                android:textColorHint="@color/offWhite"
+                android:textColor="?colorSecondary"
+                android:textColorHint="?colorSecondary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+
+            <ImageButton
+                android:id="@+id/themeModeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_light_24"
+                android:background="@null"
+                android:tint="?colorSecondary"
+                android:padding="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/textView"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/textView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
