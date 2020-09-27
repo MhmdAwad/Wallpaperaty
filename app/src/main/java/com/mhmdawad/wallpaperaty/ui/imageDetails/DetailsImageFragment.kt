@@ -1,10 +1,11 @@
 package com.mhmdawad.wallpaperaty.ui.imageDetails
 
 import android.Manifest
+import android.app.DownloadManager
 import android.app.WallpaperManager
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.graphics.drawable.TransitionDrawable
-import android.os.Build
 import android.os.Bundle
 import android.transition.TransitionInflater
 import android.view.View
@@ -19,6 +20,7 @@ import com.mhmdawad.wallpaperaty.models.UnsplashPhoto
 import com.mhmdawad.wallpaperaty.utils.addNoLimitFlag
 import com.mhmdawad.wallpaperaty.utils.downloadImage
 import com.mhmdawad.wallpaperaty.utils.loadImage
+import com.mhmdawad.wallpaperaty.utils.onComplete
 import kotlinx.android.synthetic.main.fragment_details_image.*
 import java.io.IOException
 import java.lang.Exception
@@ -120,6 +122,15 @@ class DetailsImageFragment : Fragment(R.layout.fragment_details_image) {
                 previewContainer.isVisible = false
             }
         }
+    }
 
+    override fun onResume() {
+        super.onResume()
+        requireActivity().registerReceiver(onComplete, IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE))
+    }
+
+    override fun onStop() {
+        super.onStop()
+        requireActivity().unregisterReceiver(onComplete)
     }
 }

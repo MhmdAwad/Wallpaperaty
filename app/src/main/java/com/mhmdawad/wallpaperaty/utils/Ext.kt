@@ -1,14 +1,17 @@
 package com.mhmdawad.wallpaperaty.utils
 
 import android.app.DownloadManager
+import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Environment
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import kotlinx.android.synthetic.main.fragment_details_image.*
+
 
 fun ImageView.loadImage(imageUrl: String){
     Glide.with(context)
@@ -37,4 +40,10 @@ fun Fragment.downloadImage(url: String){
     val manager =
         context!!.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
     manager.enqueue(request)
+}
+
+var onComplete = object : BroadcastReceiver() {
+    override fun onReceive(ctxt: Context, intent: Intent) {
+        Toast.makeText(ctxt, "Downloaded", Toast.LENGTH_SHORT).show()
+    }
 }
