@@ -42,7 +42,42 @@ class DetailsImageFragment : Fragment(R.layout.fragment_details_image) {
         fabListener()
         loadImage()
         setImageWallpaper()
+        downloadImageListener()
+    }
 
+    private fun checkRunTimePermission() {
+        val writePermission = Manifest.permission.WRITE_EXTERNAL_STORAGE
+        if (ContextCompat.checkSelfPermission(
+                requireContext(),
+                writePermission
+            ) != PackageManager.PERMISSION_GRANTED
+        )
+            requestPermissions(arrayOf(writePermission), 101)
+        else
+            downloadImage()
+    }
+
+    private fun downloadImage() {
+        try {
+            downloadImage(image.urls.regular)
+            Toast.makeText(
+                this.context,
+                "Downloading..",
+                Toast.LENGTH_SHORT
+            ).show()
+        } catch (e: Exception) {
+            Toast.makeText(
+                this.context,
+                "Download Failed!",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+    }
+
+    private fun downloadImageListener() {
+        downloadFAB.setOnClickListener {
+            checkRunTimePermission()
+        }
     }
 
     private fun setImageWallpaper() {

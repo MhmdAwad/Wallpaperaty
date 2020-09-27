@@ -1,6 +1,9 @@
 package com.mhmdawad.wallpaperaty.utils
 
+import android.app.DownloadManager
 import android.content.Context
+import android.net.Uri
+import android.os.Environment
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
@@ -25,4 +28,13 @@ fun Fragment.clearNoLimitFlag(){
     requireActivity().window.clearFlags(
         android.view.WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
     )
+}
+fun Fragment.downloadImage(url: String){
+    val request = DownloadManager.Request(Uri.parse(url))
+    request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_HIDDEN)
+    val nameOfFile = url.split('/')
+    request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, nameOfFile[nameOfFile.size-1])
+    val manager =
+        context!!.getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+    manager.enqueue(request)
 }
