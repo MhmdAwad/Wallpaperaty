@@ -4,7 +4,8 @@
     <string name="results_could_not_be_loaded">Results could not be loaded</string>
     <string name="retry">Retry</string>
     <string name="search">Search</string>
-    <string name="wallpaperaty">Wallpaperaty</string>
     <string name="set_as_wallpaper">Set as Wallpaper</string>
     <string name="set_as_lock_screen">Set as Lock Screen</string>
+    <string name="no_results">No Result with this search. Try again.</string>
+    <string name="internet_error">An Error occurred, Check internet connection and try again.</string>
 </resources>

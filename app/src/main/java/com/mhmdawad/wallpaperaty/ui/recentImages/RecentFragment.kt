@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import com.mhmdawad.wallpaperaty.R
 import com.mhmdawad.wallpaperaty.models.UnsplashPhoto
+import com.mhmdawad.wallpaperaty.source.EMPTY_LIST
 import com.mhmdawad.wallpaperaty.utils.OnItemClickListener
 import com.mhmdawad.wallpaperaty.utils.changeMode
 import com.mhmdawad.wallpaperaty.utils.clearNoLimitFlag
@@ -81,6 +82,8 @@ class RecentFragment : Fragment(R.layout.fragment_recent), OnItemClickListener {
             with(state.source.refresh) {
                 recentSwipeRefresh.isRefreshing = this is LoadState.Loading
                 recentImagesRV.isVisible = this is LoadState.NotLoading
+                searchLayout.isVisible = this is LoadState.Error && this.error.message == EMPTY_LIST
+                noInternetLayout.isVisible = this is LoadState.Error && this.error.message != EMPTY_LIST
 
                 if (this is LoadState.NotLoading &&
                     state.append.endOfPaginationReached &&
@@ -94,7 +97,10 @@ class RecentFragment : Fragment(R.layout.fragment_recent), OnItemClickListener {
 
     private fun refreshListener() {
         recentSwipeRefresh.setOnRefreshListener {
-            viewModel.searchQuery()
+            if(searchLayout.isVisible)
+                viewModel.searchQuery("all")
+            else
+                viewModel.searchQuery()
         }
     }
 

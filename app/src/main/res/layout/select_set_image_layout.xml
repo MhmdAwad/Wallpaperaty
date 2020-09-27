@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/wallpaperContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:tint="?colorSecondary"
+            app:srcCompat="@drawable/ic_image_24" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?colorSecondary"
+            android:layout_marginStart="8dp"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:text="@string/set_as_wallpaper" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lockScreenContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:padding="8dp"
+        android:visibility="gone"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/lockImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:tint="?colorSecondary"
+            app:srcCompat="@drawable/ic_screen_lock_24" />
+
+        <TextView
+            android:id="@+id/lockTextView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="?colorSecondary"
+            android:textStyle="bold"
+            android:layout_marginStart="8dp"
+            android:textSize="18sp"
+            android:text="@string/set_as_lock_screen" />
+    </LinearLayout>
+</LinearLayout>

@@ -2,10 +2,7 @@ package com.mhmdawad.wallpaperaty.utils
 
 import android.app.Activity
 import android.app.DownloadManager
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.SharedPreferences
+import android.content.*
 import android.net.Uri
 import android.os.Environment
 import android.widget.ImageView
@@ -58,9 +55,9 @@ fun Activity.getLastThemeMode():Boolean{
 }
 
 
-fun Fragment.tryRun(vat: () -> Unit){
+fun Fragment.tryRun(func: () -> Unit){
     try {
-        vat()
+        func()
         Toast.makeText(
             this.context,
             "Image Set Successfully.",
