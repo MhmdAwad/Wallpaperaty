@@ -18,14 +18,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/imageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:tint="?colorSecondary"
             app:srcCompat="@drawable/ic_image_24" />
 
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="?colorSecondary"
@@ -48,14 +46,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/lockImageView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:tint="?colorSecondary"
             app:srcCompat="@drawable/ic_screen_lock_24" />
 
         <TextView
-            android:id="@+id/lockTextView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="?colorSecondary"
