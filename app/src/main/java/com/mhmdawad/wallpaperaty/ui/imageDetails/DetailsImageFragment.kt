@@ -1,14 +1,19 @@
 package com.mhmdawad.wallpaperaty.ui.imageDetails
 
 import android.Manifest
+import android.app.AlertDialog
 import android.app.DownloadManager
 import android.app.WallpaperManager
 import android.content.IntentFilter
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.graphics.drawable.TransitionDrawable
+import android.os.Build
 import android.os.Bundle
 import android.transition.TransitionInflater
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
@@ -17,13 +22,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import com.mhmdawad.wallpaperaty.R
 import com.mhmdawad.wallpaperaty.models.UnsplashPhoto
-import com.mhmdawad.wallpaperaty.utils.addNoLimitFlag
-import com.mhmdawad.wallpaperaty.utils.downloadImage
-import com.mhmdawad.wallpaperaty.utils.loadImage
-import com.mhmdawad.wallpaperaty.utils.onComplete
+import com.mhmdawad.wallpaperaty.utils.*
 import kotlinx.android.synthetic.main.fragment_details_image.*
-import java.io.IOException
-import java.lang.Exception
+import kotlinx.android.synthetic.main.select_set_image_layout.view.*
 
 
 class DetailsImageFragment : Fragment(R.layout.fragment_details_image) {
@@ -87,18 +88,35 @@ class DetailsImageFragment : Fragment(R.layout.fragment_details_image) {
             val bmpImg = (detailImage.drawable as TransitionDrawable).toBitmap()
             val wallManager =
                 WallpaperManager.getInstance(requireActivity().applicationContext)
-            try {
-                wallManager.setBitmap(bmpImg)
-                Toast.makeText(
-                    this.context,
-                    "Wallpaper Set Successfully!!",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } catch (e: IOException) {
-                Toast.makeText(this.context, "Setting WallPaper Failed!!", Toast.LENGTH_SHORT)
-                    .show()
-            }
+            showCustomDialog(wallManager, bmpImg)
+        }
+    }
 
+    private fun showCustomDialog(
+        wallManager: WallpaperManager,
+        bmpImg: Bitmap
+    ) {
+        val viewGroup: ViewGroup? = view?.findViewById(android.R.id.content)
+        val dialogView: View =
+            LayoutInflater.from(requireContext()).inflate(R.layout.select_set_image_layout, viewGroup, false)
+        val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+        builder.setView(dialogView)
+        val alertDialog: AlertDialog = builder.create()
+        alertDialog.show()
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            dialogView.lockScreenContainer.setOnClickListener {
+                tryRun {
+                    wallManager.setBitmap(bmpImg, null, true, WallpaperManager.FLAG_LOCK)
+                    alertDialog.dismiss()
+                }
+            }
+            dialogView.isVisible = true
+        }
+        dialogView.wallpaperContainer.setOnClickListener {
+            tryRun {
+                wallManager.setBitmap(bmpImg)
+                alertDialog.dismiss()
+            }
         }
     }
 

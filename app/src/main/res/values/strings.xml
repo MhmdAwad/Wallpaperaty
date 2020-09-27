@@ -5,4 +5,6 @@
     <string name="retry">Retry</string>
     <string name="search">Search</string>
     <string name="wallpaperaty">Wallpaperaty</string>
+    <string name="set_as_wallpaper">Set as Wallpaper</string>
+    <string name="set_as_lock_screen">Set as Lock Screen</string>
 </resources>

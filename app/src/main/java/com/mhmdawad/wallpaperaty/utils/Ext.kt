@@ -57,6 +57,24 @@ fun Activity.getLastThemeMode():Boolean{
     return mSharedPref?.getBoolean(NIGHT_MODE, true)?:true
 }
 
+
+fun Fragment.tryRun(vat: () -> Unit){
+    try {
+        vat()
+        Toast.makeText(
+            this.context,
+            "Image Set Successfully.",
+            Toast.LENGTH_SHORT
+        ).show()
+    }catch (e: Exception){
+        Toast.makeText(
+            this.context,
+            "Setting Image Failed!!",
+            Toast.LENGTH_SHORT
+        ).show()
+    }
+}
+
 var onComplete = object : BroadcastReceiver() {
     override fun onReceive(ctxt: Context, intent: Intent) {
         Toast.makeText(ctxt, "Downloaded", Toast.LENGTH_SHORT).show()
