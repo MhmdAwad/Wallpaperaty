@@ -8,6 +8,7 @@ import androidx.paging.LoadState
 import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mhmdawad.wallpaperaty.R
+import com.mhmdawad.wallpaperaty.source.EMPTY_LIST
 import kotlinx.android.synthetic.main.recent_load_states.view.*
 
 class RecentLoadStatesAdapter(private val retry: () -> Unit) :
@@ -32,7 +33,7 @@ class RecentLoadStatesAdapter(private val retry: () -> Unit) :
 
         fun bind(loadState: LoadState) =with(itemView){
                 progress_bar.isVisible = loadState is LoadState.Loading
-                layoutError.isVisible = loadState !is LoadState.Loading
+                layoutError.isVisible = loadState is LoadState.Error && loadState.error.message != EMPTY_LIST
         }
     }
 }
