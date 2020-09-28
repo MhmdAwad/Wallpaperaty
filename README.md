@@ -9,6 +9,9 @@ MVVM is pretty good in such cases. It goes one step further in separating the re
 </center>
 
 
+# Preview 
+[![IMAGE ALT TEXT HERE](https://i.ibb.co/BKjpjsB/as.png)](https://www.youtube.com/watch?v=3LGma747RgY&ab_channel=MohamedAwad)
+
 # Built With
 
 * [Kotlin](https://kotlinlang.org/) : A modern programming language for Android development. <br>
