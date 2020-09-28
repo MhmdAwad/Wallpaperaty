@@ -16,7 +16,7 @@ MVVM is pretty good in such cases. It goes one step further in separating the re
 
 * [Kotlin](https://kotlinlang.org/) : A modern programming language for Android development. <br>
 * [Dagger Hilt](https://dagger.dev/hilt/) : Hilt provides a standard way to incorporate Dagger dependency injection into an Android application.<br>
-* [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) : A Dependency Injection Framework Library support for Kotlin. <br>
+* [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) : Asynchronous or non-blocking programming is the new reality. Whether we're creating server-side. <br>
 * [Retrofit](https://square.github.io/retrofit/) : A type-safe HTTP client for Android and Java. <br>
 * [LiveData](https://developer.android.com/topic/libraries/architecture/livedata) : Data objects that notify views when the underlying database changes.<br>
 * [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel) : Stores UI-related data that isn't destroyed on UI changes.<br>
